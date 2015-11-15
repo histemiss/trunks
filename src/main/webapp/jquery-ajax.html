@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+  $("button").click(function(){
+  
+	  xhr = new XMLHttpRequest();
+	  xhr.open("POST", "https://apiap.nfieldmr.com/v1/SignIn", true);
+	  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	  xhr.onreadystatechange = function(state) {
+	  	console.log(state);
+	  	console.log(xhr.getResponseHeader("X-AuthenticationToken"));
+	  }
+	  xhr.onloadstart = function() {
+		console.log(xhr.getAllResponseHeaders());
+	  }
+	  try {
+	  	xhr.send("Domain=ctrdp&Username=1589&Password=2wsx#EDC4rfv");
+	  }catch(e) {
+	  }
+
+	  //alert(xhr.getResponseHeader("X-AuthenticationToken"));
+
+  /*
+    $.post(
+        "https://apiap.nfieldmr.com/v1/SignIn", 
+        {
+          Domain:"ctrdp",
+          Username:"1589",
+          Password:"2wsx#EDC4rfv",
+        }, 
+        function(data){
+          alert(data.AuthenticationToken);
+        });
+    */
+  });
+});
+</script>
+</head>
+<body>
+
+<button>test </button>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+.main{	height:400px;width:800px;}
+body {
+	background-color: #ffffff;   
+
+}
+.tt1{ width: 800px; }
+.cont{background-color: #ffffff;width: 800px;margin-left:200px;	font-family:  "Microsoft Yahei";}
+h1{
+	color: #FF0000;
+   font-weight: 500;
+   font-size: 36px;
+}
+h2{
+	color: #000000;
+   font-weight: 200;
+  font-size: 18px;
+}

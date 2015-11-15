@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app 
+  version="3.0" 
+  metadata-complete="false"  
+  xmlns="/xml/ns/javaee" 
+  xmlns:xsi="/2001/XMLSchema-instance" 
+  xsi:schemaLocation="/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+
+	<welcome-file-list>
+		<welcome-file>user_login.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

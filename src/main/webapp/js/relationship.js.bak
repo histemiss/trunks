@@ -1,0 +1,176 @@
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'echarts/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'chart/force', // 使用柱状图就加载bar模块，按需加载
+                'chart/chord'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('dp_map'));
+                var option = {
+                title : {
+                    text: '部门结构：数据处理部',
+                    x:'right',
+                    y:'bottom'
+                },
+                tooltip : {
+                    trigger: 'item',
+                    formatter: '{a} : {b}'
+                },
+                toolbox: {
+                    show : true,
+                    feature : {
+                        restore : {show: true},
+                        magicType: {show: true, type: ['force', 'chord']},
+                        saveAsImage : {show: true}
+                    }
+                },
+
+                series : [
+                    {
+                        type:'force',
+                        name : "部门结构",
+                        ribbonType: false,
+                        categories : [
+                            {
+                                name: '人物'
+                            }
+                        ],
+                        itemStyle: {
+                            normal: {
+                                label: {
+                                    show: true,
+                                    textStyle: {
+                                        color: '#333'
+                                    }
+                                },
+                                nodeStyle : {
+                                    brushType : 'both',
+                                    borderColor : 'rgba(255,215,0,0.4)',
+                                    borderWidth : 1
+                                },
+                                linkStyle: {
+                                    type: 'curve'
+                                }
+                            },
+                            emphasis: {
+                                label: {
+                                    show: false
+                                    // textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+                                },
+                                nodeStyle : {
+                                    //r: 30
+                                },
+                                linkStyle : {}
+                            }
+                        },
+                        useWorker: false,
+                        minRadius : 15,
+                        maxRadius : 25,
+                        gravity: 1.1,
+                        scaling: 1.1,
+                        roam: 'move',
+                        nodes:[
+                            {category:0, name: '冯岩', value : 20, label: '冯岩\n（总监）',symbol: './images/fy.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:1, name: '罗志亮',value : 15,symbol: './images/lzl.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:1, name: '李小燕',value : 10,symbol: './images/lxy.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:2, name: '吴雪',value : 10,symbol: './images/wx.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:2, name: '从莹滋',value : 10,symbol: './images/cyz.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:2, name: '周毅',value : 10,symbol: './images/zy.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:2, name: '李慧',value : 10,symbol: './images/lh.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '郑德刚',value : 5,symbol: './images/zdg.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '胡翠竹',value : 5,symbol: './images/hcz.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '王园靖',value : 5,symbol: './images/wyj.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '李晨东',value : 5,symbol: './images/lcd.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '李睿',value : 5,symbol: './images/lr.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '祖寰',value : 5,symbol: './images/zh.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '王苗',value : 5,symbol: './images/wm.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '胡值',value : 5,symbol: './images/hz.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '管岩昊',value : 5,symbol: './images/gyh.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '王浩',value : 5,symbol: './images/wh.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '李云峰',value : 5,symbol: './images/lyf.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '徐洋',value : 5,symbol: './images/xy.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '袁小红',value : 5,symbol: './images/yxh.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '张琪',value : 5,symbol: './images/zq.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '杨剑戎',value:4,symbol: './images/lr1.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '张学敏',value:4,symbol: './images/zxm.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '郭敏',value:4,symbol: './images/lr3.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '陈金楠',value:4,symbol: './images/cjn.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '刘文静',value:4,symbol: './images/lr5.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '李慧晶',value:4,symbol: './images/lhj.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '汝成萍',value:4,symbol: './images/rcp.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '辛立娟',value:4,symbol: './images/xlj.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '江燕',value:4,symbol: './images/jy.png',itemStyle:{normal:{label:{position:'right'}}}},
+                            {category:3, name: '王文文',value:4,symbol: './images/lr4.png',itemStyle:{normal:{label:{position:'right'}}}}
+
+                        ],
+                        links : [
+                            {source : '罗志亮', target : '冯岩', weight : 4, name: '下属'},
+                            {source : '李小燕', target : '冯岩', weight : 4, name: '下属'},
+                            {source : '吴雪', target : '罗志亮', weight :3, name: '下属'},
+                            {source : '从莹滋', target : '罗志亮', weight : 3, name: '下属'},
+                            {source : '周毅', target : '罗志亮', weight : 3, name: '下属'},
+                            {source : '李慧', target : '罗志亮', weight : 3, name: '下属'},
+                            {source : '郑德刚', target : '吴雪', weight : 2},
+                            {source : '王园靖', target : '吴雪', weight : 2},
+                            {source : '胡翠竹', target : '吴雪', weight : 2},
+                            {source : '李晨东', target : '从莹滋', weight : 2},
+                            {source : '李睿', target : '从莹滋', weight : 2},
+                            {source : '祖寰', target : '从莹滋', weight : 2},
+                            {source : '王苗', target : '周毅', weight : 2},
+                            {source : '胡值', target : '周毅', weight : 2},
+                            {source : '管岩昊', target : '周毅', weight : 2},
+                            {source : '王浩', target : '周毅', weight : 2},
+                            {source : '李云峰', target : '李慧', weight : 2},
+                            {source : '袁小红', target : '李慧', weight : 2},
+                            {source : '徐洋', target : '李慧', weight : 2},
+                            {source : '张琪', target : '李小燕', weight : 2},
+                            {source : '杨剑戎',target : '李小燕', weight : 2},
+                            {source : '张学敏',target : '李小燕', weight : 2},
+                            {source : '郭敏',target : '李小燕', weight : 2},
+                            {source : '陈金楠',target : '李小燕', weight : 2},
+                            {source : '刘文静',target : '李小燕', weight : 2},
+                            {source : '李慧晶',target : '李小燕', weight : 2},
+                            {source : '汝成萍',target : '李小燕', weight : 2},
+                            {source : '辛立娟',target : '李小燕', weight : 2},
+                            {source : '江燕',target : '李小燕', weight : 2},
+                            {source : '王文文',target : '李小燕', weight : 2}
+                        ]
+                    }
+                ]
+            };
+            var ecConfig = require('echarts/config');
+            function focus(param) {
+                var data = param.data;
+                var links = option.series[0].links;
+                var nodes = option.series[0].nodes;
+                if (
+                    data.source !== undefined
+                    && data.target !== undefined
+                ) { //点击的是边
+                    var sourceNode = nodes.filter(function (n) {return n.name == data.source})[0];
+                    var targetNode = nodes.filter(function (n) {return n.name == data.target})[0];
+                    console.log("选中了边 " + sourceNode.name + ' -> ' + targetNode.name + ' (' + data.weight + ')');
+                } else { // 点击的是点
+                    console.log("选中了" + data.name + '(' + data.value + ')');
+                }
+            }
+            myChart.on(ecConfig.EVENT.CLICK, focus)
+
+            myChart.on(ecConfig.EVENT.FORCE_LAYOUT_END, function () {
+                console.log(myChart.chart.force.getPosition());
+            });
+            myChart.setOption(option); 
+
+
+            }
+        );
+             
