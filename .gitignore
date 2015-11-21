@@ -4,3 +4,6 @@ src/main/webapp/images/
 src/main/webapp/swf/
 target/
 *.bat
+.classpath
+.project
+.settings/
