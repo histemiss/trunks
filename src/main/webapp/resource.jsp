@@ -1,9 +1,7 @@
-<%@ page contentType="text/html; charset=GBK" language="java"
-	errorPage=""%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,30 +14,20 @@
 <script src="js/bootstrap.min.js"></script>
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/starter-template.css" rel="stylesheet">
+
 <script type="text/javascript">
-    	function UserLoginCheck(){
-    		var js_uname = document.getElementById("uname").value;
-    		var js_upassword = document.getElementById("upassword").value;
-    		if(js_uname == ""){
-    			alert("用户名不能为空！");
-    			return false;
-    		}
-    		if(js_uname.length > 20){
-    			alert("用户长度不能大于20字节");
-    			return false;
-    		}
-    		if(js_upassword == ""){
-    			alert("密码不能为空！");
-    			return false;
-    		}
-    		if(js_upassword.length > 20 || js_password < 6){
-    			alert("密码长度应为6~20");
-    			return false;
-    		}
-    		else
-    			return true;
-    	}
-    </script>
+function changefilename() {
+	$("#filename").val($("#file").val());
+}
+
+function submitclick() {
+	if (! $("#file").val()) {
+		alert("没选择文件 上传什么？");
+		return false;
+	}
+	return true;
+}
+</script>
 
 <!-- 条件注释 -->
 <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -88,8 +76,15 @@
 	</div>
 	<div class="jumbotron">
 		<h3>数据处理部</h3>
-		 
 	</div>
 	
+	<form method="POST" enctype="multipart/form-data" action="upload">
+		File to upload: 
+		<input type="file" id="file" name="file" onchange="changefilename()"  ><br /> 
+		<input id='filename' name='filename' class='hide' />
+		<input type="submit" value="上传" onClick="return submitclick();">
+	</form>
+
+
 </body>
 </html>

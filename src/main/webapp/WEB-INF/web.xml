@@ -7,7 +7,31 @@
   xsi:schemaLocation="/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 
 	<welcome-file-list>
-		<welcome-file>user_login.jsp</welcome-file>
+		<welcome-file>home.jsp</welcome-file>
 	</welcome-file-list>
 
-</web-app>
+	<context-param> 
+	    <description>Location to store uploaded file</description> 
+	    <param-name>file-upload-dir</param-name> 
+	    <param-value>
+	         D:\tmp
+	     </param-value> 
+	</context-param>
+	
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/MVC-servlet.xml</param-value>
+	</context-param>
+
+    <servlet>
+		<servlet-name>MVC</servlet-name>
+		<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MVC</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+	</web-app>

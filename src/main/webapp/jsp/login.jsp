@@ -1,9 +1,7 @@
-<%@ page contentType="text/html; charset=GBK" language="java"
-	errorPage=""%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
 <!DOCTYPE html>
-<html lang="zh-cn">
+<html>
+
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -56,37 +54,11 @@
 <!-- 导航栏 -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<div class="navbar-header">
-				<font color="white" size="6"><%if(session.getAttribute("UserName") != null){
-						out.println(session.getAttribute("UserName"));
-					}%>
-				</font>
-			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
-					<%if(session.getAttribute("UserName") != null){
-						out.println("<li><a href=\"user_logout\">Logout</a></li>");
-					}%>
 					<li><a href="home.jsp">Home</a></li>
-					<li class="active"><a href="user_login.jsp">Login</a></li>
-					<li><a href="user_regist.jsp">Regist</a></li>
-					<%if(session.getAttribute("UserName") != null){
-						out.println("<li><a href=\"choujiang.jsp\">抽奖</a></li>");
-					}%>
-					<%if(session.getAttribute("UserName") != null){
-						out.println("<li><a href=\"report.jsp\">在线报告</a></li>");
-					}%>
-					<%if(session.getAttribute("UserName") != null){
-						out.println("<li><a href=\"huodong.jsp\">活动</a></li>");
-					}%>
-					
-					<%if(session.getAttribute("UserName") != null){
-						out.println("<li><a href=\"resource.jsp\">DP资源</a></li>");
-					}%>
-					<%if(session.getAttribute("UserName") != null){
-						out.println("<li><a href=\"resource2.jsp\">项目报告</a></li>");
-					}%>
-
+					<li ${op=="login"?"class=\"active\"":""}> <a href="login">登陆</a> </li>
+					<li ${op=="register"?"class=\"active\"":""}> <a href="register">注册</a> </li>
 				</ul>
 			</div>
 		</div>
@@ -95,17 +67,13 @@
 
 	<div class="jumbotron">
 		<div></div>
-		<p align="center">欢迎用户登陆</p>
+		<p align="center">
+			${op == "login" ? "欢迎用户登陆" : "注册新用户"}
+		</p>
 	</div>
-	<span style="color: red; font-weight: bold"> <%
-		if (request.getAttribute("err") != null)
-		{
-			out.println(request.getAttribute("err") + "<br/>");
-		}
-	%>
-	</span>
+	<span style="color: red; font-weight: bold"> ${err} </span>
 	<div class="container" align="center">
-		<form action="user_login" method="post" class="form-group">
+		<form action=${op} method="post" class="form-group">
 			<div class="input-group">
 				<div class="col-lg-30">
 					<span class="input-group-addon">UserName</span> <input type="text"
@@ -122,9 +90,9 @@
 			<br>
 			<br>
 			<div class="form-group">
-				<input type="submit" value="登    录"
+				<input type="submit" value=${op == "login" ? "登陆" : "注册"}
 					onClick="return UserLoginCheck();" class="btn btn-primary btn-lg" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="reset" value="重    置" class="btn btn-primary btn-lg" />
+				<input type="reset" value="重置" class="btn btn-primary btn-lg" />
 			</div>
 		</form>
 	</div>
