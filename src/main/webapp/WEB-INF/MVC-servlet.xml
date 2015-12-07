@@ -1,16 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>  
 <beans xmlns="http://www.springframework.org/schema/beans"
-   xmlns:mvc="http://www.springframework.org/schema/mvc"
-   xmlns:context="http://www.springframework.org/schema/context"
-   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xsi:schemaLocation="
-   http://www.springframework.org/schema/beans     
-   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-   http://www.springframework.org/schema/context 
-   http://www.springframework.org/schema/context/spring-context-3.0.xsd
-   http://www.springframework.org/schema/mvc 
-   http://www.springframework.org/schema/mvc/spring-mvc.xsd
-   ">
-   
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans     
+		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/mvc 
+		http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd
+">	
+
 	<context:component-scan base-package="com.myspring" />
 
 	<mvc:annotation-driven />
@@ -18,6 +22,7 @@
 	<mvc:resources mapping="/echarts/**" location="/echarts/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/download/**" location="/download/" />
+	<mvc:resources mapping="/images/**" location="/images/" />
 
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/jsp/" />
@@ -27,4 +32,64 @@
 		<property name="maxUploadSize" value="50000000"/>
 	</bean>
 	
+   <!-- Initialization for data source -->
+   <bean id="dataSource" 
+      class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+      <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+      <property name="url" value="jdbc:mysql://localhost:3306/trunk"/>
+      <property name="username" value="root"/>
+      <property name="password" value="1234"/>
+   </bean>
+   
+   <bean id="fileJT"  class="com.myspring.db.FileJT">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+   <bean id="userJT"  class="com.myspring.db.UserJT">
+      <property name="dataSource"  ref="dataSource" />    
+   </bean>
+
+	<bean id="accessDecisionManager" class="com.myspring.DownloadSecurityDecision">
+		<constructor-arg>
+			<list>
+				<bean class="org.springframework.security.access.vote.RoleVoter" />
+				<bean class="org.springframework.security.web.access.expression.WebExpressionVoter" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<security:http pattern="/home.jsp*" 	security="none"/>
+	<security:http pattern="/dologin" 		security="none"/>
+	<security:http pattern="/register" 		security="none"/>
+	<security:http pattern="/css/**" 		security="none"/>
+	<security:http pattern="/echarts/**" 	security="none"/>
+	<security:http pattern="/js/**" 		security="none"/>
+	<security:http pattern="/images/**"		security="none"/>
+
+	<security:http auto-config="true"  access-decision-manager-ref="accessDecisionManager">
+		<security:intercept-url pattern="/admin**" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/**" access="ROLE_USER"/>
+
+		<!--  
+		<security:session-management invalid-session-url="/login?time=1">
+			<security:concurrency-control max-sessions="1" expired-url="/login?time=1" />
+		</security:session-management>
+			login-page="/dologin" 
+		-->
+
+		<security:access-denied-handler error-page="/dologin?err=2" />
+		<security:form-login 
+			default-target-url="/welcome"
+			authentication-failure-url="/dologin?err=1" 
+		/>
+		<security:logout 
+			logout-url="/logout" 
+			logout-success-url="/dologin?out=1" 
+			delete-cookies="JSESSIONID" 
+			invalidate-session="true" 
+		/>
+	</security:http>
+
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider user-service-ref="userJT" />
+    </security:authentication-manager>	
 </beans>

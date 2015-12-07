@@ -1,10 +1,27 @@
 package com.mybean;
 
 public class FileBean {
-	public long id;
-	public String strName;
-	public String strPath;
-	
+	private long ullId;
+	private long ullUserId;
+	private String strName;
+	private String strPath;
+
+	public long getUllId() {
+		return ullId;
+	}
+
+	public void setUllId(long ullid) {
+		this.ullId = ullid;
+	}
+
+	public long getUllUserId() {
+		return ullUserId;
+	}
+
+	public void setUllUserId(long ullUserId) {
+		this.ullUserId = ullUserId;
+	}
+
 	public String getStrName() {
 		return strName;
 	}
@@ -21,5 +38,4 @@ public class FileBean {
 		this.strPath = strPath;
 	}
 
-	public long ownerId;
 }

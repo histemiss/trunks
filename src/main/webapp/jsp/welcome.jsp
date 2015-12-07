@@ -16,13 +16,6 @@
 <link href="css/bootstrap.css" rel="stylesheet">
 <link href="css/starter-template.css" rel="stylesheet">
 
-<!-- 条件注释 -->
-<!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="http://cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
-      <script src="http://cdn.bootcss.com/respond.js/1.3.0/respond.min.js"></script>
-<![endif]-->
 </head>
 
 <body>
@@ -41,7 +34,7 @@
             		<li><a href="huodong.jsp">活动</a></li>
             		<li><a href="resource.jsp">DP资源</a></li>
             		<li><a href="report2.jsp">项目报告</a></li>
-					<li><a href="logout">注销</a></li>
+					<li><a href="<c:url value='/logout'/>">注销</a></li>
 				</ul>
 			</div>
 			<!--/.nav-collapse -->

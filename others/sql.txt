@@ -1,15 +1,19 @@
-create table upload_info(
-	ID BIGINT NOT NULL AUTO_INCREMENT, 
+create database trunk;
+use database trunk;
+
+create table file_info(
+	id BIGINT NOT NULL AUTO_INCREMENT, 
 	user_id BIGINT,
-	file_name CHAR(255),
-	PRIMARY KEY (ID)
+	name CHAR(255),
+	path CHAR(255),
+	PRIMARY KEY (ID), UNIQUE(path)
 );
 
 create table user_info (
 	ID BIGINT NOT NULL AUTO_INCREMENT,
-	user_name CHAR(255),
-	user_passwd CHAR(255),
-	PRIMARY KEY(ID)
+	name CHAR(255),
+	password CHAR(255),
+	PRIMARY KEY(ID),UNIQUE(name)
 );
 
 create trunks#download.xml under tomcat/conf/cataline/localhost

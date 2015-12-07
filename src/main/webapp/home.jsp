@@ -45,10 +45,10 @@
 						<li><a href="huodong.jsp">活动</a></li>
 						<li><a href="resource.jsp">DP资源</a></li>
 						<li><a href="resource2.jsp">项目报告</a></li>
-						<li><a href="logout">注销</a></li>
+						<li><a href="<c:url value='/logout'/>">注销</a></li>
 					</c:if>
 					<c:if test="${empty user_name}">
-						<li><a href="login">登陆</a></li>
+						<li><a href="welcome">登陆</a></li>
 						<li><a href="register">注册</a></li>
 					</c:if>
 				</ul>
