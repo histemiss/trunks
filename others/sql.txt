@@ -1,5 +1,16 @@
+mysql:
+mysqld --defaults-file=/path/to/conf --initialize
+conf:
+[mysqld]
+basedir=D:\\java\\mysql-5.7.10-winx64
+datadir=D:\\java\\mysql
+
+mysqld --defaults-file=/path/to/conf --skip-grant-tables
+mysql -u root (no password)
+alter user user() identified by '1234';
+alter user 'root'@'localhost' password expire never;
 create database trunk;
-use database trunk;
+use trunk;
 
 create table file_info(
 	id BIGINT NOT NULL AUTO_INCREMENT, 
@@ -16,8 +27,20 @@ create table user_info (
 	PRIMARY KEY(ID),UNIQUE(name)
 );
 
-create trunks#download.xml under tomcat/conf/cataline/localhost
+mvn:
+mvn install
+mvn eclipse:eclipses
+mvn tomcat7:deploy
+mvn tomcat7:redeploy
 
+tomcat:
+tomcat-users.xml
+  <role rolename="tomcat"/>
+  <role rolename="manager-script"/>
+  <role rolename="manager-gui"/>
+  <user username="tomcat" password="tomcat" roles="tomcat,manager-gui,manager-script"/>
+
+create trunks#download.xml under tomcat/conf/cataline/localhost
 <?xml version="1.0" encoding="UTF-8"?>
 <Context docBase="d:\tmp" antiResourceLocking="false" cookies="false" unpackWAR="false"/>
 
