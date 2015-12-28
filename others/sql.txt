@@ -1,14 +1,20 @@
 mysql:
-mysqld --defaults-file=/path/to/conf --initialize
-conf:
+modify my.ini:
 [mysqld]
 basedir=D:\\java\\mysql-5.7.10-winx64
 datadir=D:\\java\\mysql
+mysqld --print-defaults
+mysqld --console
+mysqld --skip-grant-tables
+mysqld --initialize
 
-mysqld --defaults-file=/path/to/conf --skip-grant-tables
 mysql -u root (no password)
+update user set authentication=PASSWORD('1234') where user='root';
+flush privilege;
+
 alter user user() identified by '1234';
 alter user 'root'@'localhost' password expire never;
+
 create database trunk;
 use trunk;
 

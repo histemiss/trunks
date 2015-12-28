@@ -69,6 +69,8 @@
 		</p>
 	</div>
 	
+		<div>${err}</div>
+	
 	<c:if test="${not empty param.err}">
 		<div><c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}"/></div>
 	</c:if>
