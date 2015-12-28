@@ -41,7 +41,7 @@ public class UserController {
 	@RequestMapping(path="/register", method=RequestMethod.GET)
     public String register(ModelMap model){
 		model.addAttribute("op", "register");
-		return "login";
+		return "dologin";
 	}
 
 	@RequestMapping(path="/register", method=RequestMethod.POST)
@@ -66,6 +66,6 @@ public class UserController {
 
 		model.addAttribute("op", "register");
 		model.addAttribute("err", err);
-		return "login";
+		return "dologin";
 	}
 }

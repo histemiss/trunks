@@ -84,7 +84,7 @@
 		<form id="form" action=${op == "login" ? "spring_security_check":"register"} method="post" class="form-group">
 		--> 
 		
-		<form id="form" action="<c:url value='/login'/>" method="post" class="form-group">
+		<form id="form" action="<c:url value='${op}'/>" method="post" class="form-group">
 			<div class="input-group">
 				<div class="col-lg-30">
 					<span class="input-group-addon">UserName</span> 

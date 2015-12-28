@@ -14,7 +14,7 @@
 	    <description>Location to store uploaded file</description> 
 	    <param-name>file-upload-dir</param-name> 
 	    <param-value>
-	         D:\tmp
+	         /home/histemiss/disk/tmp
 	     </param-value> 
 	</context-param>
 	
